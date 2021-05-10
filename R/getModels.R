@@ -104,7 +104,7 @@ getModelBatting = function(data, mod.bat = NULL, verbose = TRUE) {
     if (!paste("predict", class(mod.bat), sep = ".") %in% methods(predict)) {
         message("....Supplied Batting model does not have a predict method...")
         message("....Building in-sample Batting Model...")
-        mod.bat = lm(delta.bat ~ as.factor(batterPos), data = data[, c("delta.bat", "batterPos")])
+        mod.bat = lm(delta.bat ~ batterPos, data = data[, c("delta.bat", "batterPos")])
     }
     return(mod.bat)
 }

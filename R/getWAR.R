@@ -38,8 +38,8 @@ getWAR.openWARPlays = function(data, dataRepl = NULL, nteams = 30, verbose = TRU
     }
     
     # Find the playing time matrix for all players
-    pt.mat = as.matrix(players[, c("PA.bat", "PA.br1", "PA.br2", "PA.br3", "BF", "PA.P", "PA.C", "PA.1B", "PA.2B", "PA.3B", 
-        "PA.SS", "PA.LF", "PA.CF", "PA.RF")])
+    pt.mat = as.matrix(players[, c("PA.bat", "PA.br1", "PA.br2", "PA.br3", "BF", "PA.P", "PA.C",
+                                   "PA.1B", "PA.2B", "PA.3B", "PA.SS", "PA.LF", "PA.CF", "PA.RF")])
     
     repl.means = getReplacementMeans(dataRepl, replIds)
     players$repl = as.numeric(pt.mat %*% repl.means)

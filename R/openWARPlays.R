@@ -37,8 +37,8 @@ getRAA.openWARPlays = function(data, ...) {
     # dplyr syntax
     war.bat <- data %>% 
       group_by(batterId) %>% 
-      summarise(playerId = batterId[1], Name = max(as.character(batterName)), PA.bat = sum(isPA), 
-        G = length(unique(gameId)), HR = sum(event == "Home Run"), RAA.bat = sum(raa.bat, na.rm = TRUE))
+      summarise(playerId = batterId[1], PA.bat = sum(isPA), G = length(unique(game_id)),
+                HR = sum(event == "Home Run"), RAA.bat = sum(raa.bat, na.rm = TRUE))
     
     # Baserunning war.br0 = ddply(data, ~batterId, summarise, RAA.br0 = sum(raa.br0, na.rm=TRUE)) war.br1 = ddply(subset(data,
     # !is.na(start1B)), ~start1B, summarise, PA.br1 = sum(isPA), RAA.br1 = sum(raa.br1, na.rm=TRUE)) war.br2 =
@@ -81,7 +81,7 @@ getRAA.openWARPlays = function(data, ...) {
     # war.pitch = ddply(data, ~ pitcherId, summarise, Name = max(as.character(pitcherName)), BF = sum(isPA), RAA.pitch =
     # sum(raa.pitch))
     
-    war.pitch <- data %>% group_by(pitcherId) %>% summarise(Name = max(as.character(pitcherName)), BF = sum(isPA), RAA.pitch = sum(raa.pitch))
+    war.pitch <- data %>% group_by(pitcherId) %>% summarise(BF = sum(isPA), RAA.pitch = sum(raa.pitch))
     
     # Merge them all together
     
@@ -90,7 +90,6 @@ getRAA.openWARPlays = function(data, ...) {
     players = merge(x = players, y = war.br2, by.x = "playerId", by.y = "start2B", all = TRUE)
     players = merge(x = players, y = war.br3, by.x = "playerId", by.y = "start3B", all = TRUE)
     players = merge(x = players, y = war.pitch, by.x = "playerId", by.y = "pitcherId", all = TRUE)
-    players$Name = with(players, ifelse(is.na(Name.x), Name.y, Name.x))
     players = merge(x = players, y = war.P, by.x = "playerId", by.y = "pitcherId", all = TRUE)
     players = merge(x = players, y = war.C, by.x = "playerId", by.y = "playerId.C", all = TRUE)
     players = merge(x = players, y = war.1B, by.x = "playerId", by.y = "playerId.1B", all = TRUE)
