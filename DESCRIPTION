@@ -27,7 +27,6 @@ Imports:
     RCurl,
     dplyr,
     stringr,
-    Sxslt,
     Lahman
 Suggests: 
     openWARData,
