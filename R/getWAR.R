@@ -1,5 +1,5 @@
 #' @title getWAR
-#' 
+#' @aliases getWAR.openWARPlays
 #' @description Tabulates WAR
 #' 
 #' @details Compute each player's WAR, given their RAA values
