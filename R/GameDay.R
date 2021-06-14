@@ -1,6 +1,6 @@
 #' @title gameday
 #' @aliases gameday.default
-#' 
+#' test this
 #' @description Convenience class for dealing with MLBAM GameDay files 
 #' 
 #' @details Each gameId corresponds to one object of class 'gameday'
